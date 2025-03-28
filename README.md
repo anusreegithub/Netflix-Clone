@@ -6,6 +6,9 @@
 6. Sign up and Sign in on samepage using useState
 7. Form validation
    - UseRef Hook
+8. Firebase setup
+9. Deploy app to production
+10. create signup user account
 
 ## features
 

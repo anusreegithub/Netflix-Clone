@@ -1,6 +1,11 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import validate from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
@@ -8,16 +13,54 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
-  const fullname = useRef(null)
+  const fullname = useRef(null);
 
   const toggleSignIn = () => {
     setisSignin(!isSignin);
   };
 
   const handleButtonClick = () => {
-    const message = validate(email.current.value, password.current.value,fullname.current.value);
+    const message = validate(email.current.value, password.current.value);
 
     seterrorMessage(message);
+    if (message === null) {
+      if (!isSignin) {
+        //sign up logic
+        createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            seterrorMessage(errorCode + "-", errorMessage);
+          });
+      } else {
+        //sign in
+        signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        )
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            console.log("successfull");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            seterrorMessage(errorCode + "-", errorMessage);
+          });
+      }
+    } else {
+      return;
+    }
   };
 
   return (
