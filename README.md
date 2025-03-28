@@ -11,3 +11,4 @@
       - Some movie
       - Signup box annd some texts
       - Trending movies - carousal
+      

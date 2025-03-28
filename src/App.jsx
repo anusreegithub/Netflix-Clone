@@ -1,11 +1,12 @@
+import Body from "./componenets/Body"
+
 
 
 function App() {
 
   return (
     <>
-
-     <h1></h1>
+     <Body/>
     </>
   )
 }
