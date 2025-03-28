@@ -1,9 +1,11 @@
 1. npm create vite@latest
 2. setup tailwindcss
 3. build header
-4. build login page
-5. Sign up and Sign in on samepage using useState
-6. Form validation
+4. Routing
+5. build login page
+6. Sign up and Sign in on samepage using useState
+7. Form validation
+   - UseRef Hook
 
 ## features
 

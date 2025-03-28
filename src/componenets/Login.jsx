@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import validate from "../utils/validate";
 
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
+  const [errorMessage, seterrorMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const fullname = useRef(null)
 
   const toggleSignIn = () => {
     setisSignin(!isSignin);
   };
+
+  const handleButtonClick = () => {
+    const message = validate(email.current.value, password.current.value,fullname.current.value);
+
+    seterrorMessage(message);
+  };
+
   return (
     <>
       <Header />
@@ -17,27 +30,39 @@ const Login = () => {
             <h2 className="text-white text-3xl font-bold mb-6 text-left">
               {isSignin ? "Sign In" : "Sign Up"}
             </h2>
-            <form className="flex flex-col">
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="flex flex-col"
+            >
               {!isSignin && (
                 <input
+                  ref={fullname}
                   type="text"
                   placeholder="Name or Phone Number "
                   className="p-3 mb-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
                 />
               )}
               <input
+                ref={email}
                 type="email"
                 placeholder="Email or phone number"
                 className="p-3 mb-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
               />
               <input
+                ref={password}
                 type="password"
                 placeholder="Password"
                 className="p-3 mb-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
               />
-              <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg">
+
+              <button
+                className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg"
+                onClick={handleButtonClick}
+              >
                 {isSignin ? "Sign In" : "Sign Up"}
               </button>
+
+              <p className="text-red-800 font-bold py-3 ">{errorMessage}</p>
             </form>
             <div className="flex justify-between text-gray-400 text-sm mt-4">
               <div>
@@ -50,10 +75,12 @@ const Login = () => {
             </div>
             <p className="text-gray-400 text-sm mt-6 text-center">
               {isSignin ? "New to Netflix?" : "Already have an account ?"}
-              <p onClick={toggleSignIn} className="text-white hover:underline cursor-pointer">
-                {isSignin ? "Sign Up now":"Sign In now"}
+              <p
+                onClick={toggleSignIn}
+                className="text-white hover:underline cursor-pointer"
+              >
+                {isSignin ? "Sign Up now" : "Sign In now"}
               </p>
-           
             </p>
 
             <div className="text-gray-400 text-sm text-center my-4">OR</div>
