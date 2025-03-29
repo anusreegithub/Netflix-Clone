@@ -1,12 +1,14 @@
 import Body from "./componenets/Body"
-
+import UserAuthContextProvider from "./utils/userContext"
 
 
 function App() {
 
   return (
     <>
-     <Body/>
+     <UserAuthContextProvider>
+      <Body />
+    </UserAuthContextProvider>
     </>
   )
 }
