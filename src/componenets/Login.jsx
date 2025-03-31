@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import validate from "../utils/validate";
 import { useUserAuth } from "../utils/userContext";
@@ -17,6 +17,16 @@ const Login = () => {
   const toggleSignIn = () => {
     setisSignin(!isSignin);
   };
+
+  const {user} = useUserAuth();
+
+  useEffect(()=>{
+    if(user){
+      navigate("/browse")
+    }
+   
+  },[user, navigate])
+  
 
   const handleButtonClick = async () => {
     const message = validate(email.current.value, password.current.value);
@@ -45,7 +55,7 @@ const Login = () => {
         <div className="flex items-center justify-center min-h-screen">
           <div className="bg-opacity-90 bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
             <h2 className="text-white text-3xl font-bold mb-6 text-left">
-              {isSignin ? "Sign In" : "Sign Up"}
+              {isSignin ? "Sign In" : "Sign Up "}
             </h2>
             <p className="text-red-800 font-bold py-3">{errorMessage}</p>
 
@@ -82,7 +92,7 @@ const Login = () => {
               <p className="text-red-800 font-bold py-3">{errorMessage}</p>
             </form>
             <p className="text-gray-400 text-sm mt-6 text-center">
-              {isSignin ? "New to Netflix?" : "Already have an account?"}
+              {isSignin ? "New to Netflix? " : "Already have an account?"}
               <span
                 onClick={toggleSignIn}
                 className="text-white hover:underline cursor-pointer"

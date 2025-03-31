@@ -1,18 +1,19 @@
-import React from 'react'
-import { useUserAuth } from '../utils/userContext'
-import Header from './Header';
-
-
+import React from "react";
+import Header from "./Header";
+import useNowPlaying from "../../hook/useNowPlaying";
+ import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
-  const {user} = useUserAuth();
-  console.log(user)
+useNowPlaying();
+
   return (
     <div>
-
-      <Header/>
+      <Header />
+      <MainContainer/>
+      <SecondaryContainer/>
     </div>
-  )
-}
+  );
+};
 
-export default Browse
+export default Browse;

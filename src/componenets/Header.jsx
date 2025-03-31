@@ -11,6 +11,7 @@ const Header = () => {
 
 
   const handleSignOut = ()=>{
+    console.log("called handle signout")
     signOut(auth).then(()=>{
       navigate("/")
     }).catch((error)=>{
@@ -19,7 +20,7 @@ const Header = () => {
     })
   }
   return (
-    <div className="absolute px-8 py-4 w-screen bg-gradient-to-b from-black flex justify-between items-center">
+    <div className="absolute px-8 py-4 w-screen bg-gradient-to-b from-black flex justify-between items-center z-50">
       {/* Logo */}
       <div className="container w-55">
         <img src="/Logo/logo.png" alt="Netflix Logo" className="h-10" />
@@ -38,8 +39,11 @@ const Header = () => {
             </select>
             <Globe className="absolute left-3 top-4 h-6 w-6 text-white" />
         </div>
+        <button onClick={()=> alert("alert odikko")}>CLik</button>
     
-        <button onClick={handleSignOut} className="border border-gray-500 bg-white text-black font-semibold px-6 py-3 rounded-3xl text-lg hover:bg-gray-200 transition">
+        <button onClick={
+          handleSignOut
+        } className="border border-gray-500 bg-white text-black font-semibold px-6 py-3 rounded-3xl text-lg hover:bg-gray-200 transition">
             Sign Out
         </button>
     </div>

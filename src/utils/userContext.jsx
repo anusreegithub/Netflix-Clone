@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 
-const userAuthContext = createContext();
+const UserAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -20,10 +20,9 @@ export function UserAuthContextProvider({ children }) {
       password
     );
 
-    await updateProfile(userCredential.user, {
-      displayName: fullname,
-    });
+    await updateProfile(userCredential.user, { displayName: fullname });
 
+    // Manually update user state after updating profile
     setUser({ ...userCredential.user, displayName: fullname });
   }
 
@@ -43,14 +42,15 @@ export function UserAuthContextProvider({ children }) {
   }, []);
 
   return (
-    <userAuthContext.Provider value={{ user, signUp, signIn, logOut }}>
+    <UserAuthContext.Provider value={{ user, signUp, signIn, logOut }}>
       {children}
-    </userAuthContext.Provider>
+    </UserAuthContext.Provider>
   );
 }
 
 export function useUserAuth() {
-  return useContext(userAuthContext);
+  return useContext(UserAuthContext);
 }
+
 
 export default UserAuthContextProvider;
