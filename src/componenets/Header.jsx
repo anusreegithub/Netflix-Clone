@@ -27,9 +27,9 @@ const Header = () => {
       </div>
 
       {user && (
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-2">
         <div className="relative">
-            <select className="bg-transparent border border-gray-500 text-white px-6 py-3 rounded-3xl flex items-center text-lg pr-10 appearance-none">
+            <select className="bg-transparent border border-gray-500 text-white px-6 py-3 rounded-3xl flex items-center text-sm pr-3 appearance-none cursor-pointer">
                 <option value="en" className="text-black">
                     &nbsp;&nbsp;&nbsp; English
                 </option>
@@ -37,13 +37,12 @@ const Header = () => {
                     &nbsp;&nbsp; Hindi
                 </option>
             </select>
-            <Globe className="absolute left-3 top-4 h-6 w-6 text-white" />
+            <Globe className="absolute left-4 top-4 h-4 w-4 text-white" />
         </div>
-        <button onClick={()=> alert("alert odikko")}>CLik</button>
     
         <button onClick={
           handleSignOut
-        } className="border border-gray-500 bg-white text-black font-semibold px-6 py-3 rounded-3xl text-lg hover:bg-gray-200 transition">
+        } className="border border-gray-500 bg-white text-black font-semibold px-6 py-3 rounded-3xl text-sm hover:bg-gray-200 transition cursor-pointer">
             Sign Out
         </button>
     </div>

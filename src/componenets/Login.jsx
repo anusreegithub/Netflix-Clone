@@ -84,7 +84,7 @@ const Login = () => {
                 className="p-3 mb-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
               />
               <button
-                className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg"
+                className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg cursor-pointer"
                 onClick={handleButtonClick}
               >
                 {isSignin ? "Sign In" : "Sign Up"}
