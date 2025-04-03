@@ -8,3 +8,16 @@ export const Apioptions = {
 };
 
 export const IMG_CDN_URL ="https://image.tmdb.org/t/p/w500"
+
+
+ const firebaseErrorMessages = {
+  "auth/invalid-credential": "Invalid email or password. Please try again.",
+  "auth/email-already-in-use": "This email is already registered. Try logging in instead.",
+  "auth/user-not-found": "No account found with this email. Please sign up.",
+  "auth/wrong-password": "Incorrect password. Please try again.",
+  "auth/network-request-failed": "Network error. Check your internet connection.",
+  "auth/weak-password": "Password should be at least 6 characters long.",
+  "auth/too-many-requests": "Too many failed attempts. Try again later.",
+};
+
+export default firebaseErrorMessages

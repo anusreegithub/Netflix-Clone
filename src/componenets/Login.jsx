@@ -3,7 +3,7 @@ import Header from "./Header";
 import validate from "../utils/validate";
 import { useUserAuth } from "../utils/userContext";
 import { useNavigate } from "react-router-dom";
-
+import firebaseErrorMessages from "../utils/constants.js"
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
   const [errorMessage, seterrorMessage] = useState(null);
@@ -43,7 +43,8 @@ const Login = () => {
         navigate("/browse");
       }
     } catch (error) {
-      seterrorMessage(`${error.code} - ${error.message}`);
+      const errorMsg = firebaseErrorMessages[error.code] || "Unexpected Error"
+      seterrorMessage(errorMsg);
     }
   };
   
@@ -57,7 +58,6 @@ const Login = () => {
             <h2 className="text-white text-3xl font-bold mb-6 text-left">
               {isSignin ? "Sign In" : "Sign Up "}
             </h2>
-            <p className="text-red-800 font-bold py-3">{errorMessage}</p>
 
             <form
               onSubmit={(e) => e.preventDefault()}
